@@ -27,8 +27,10 @@ type providerModel struct {
 	Token types.String `tfsdk:"token"`
 }
 
-func New() provider.Provider {
-	return &ghProvider{}
+func New(version string) provider.Provider {
+	return &ghProvider{
+		version: version,
+	}
 }
 
 func (gp *ghProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
