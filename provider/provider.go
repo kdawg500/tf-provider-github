@@ -27,6 +27,10 @@ type providerModel struct {
 	Token types.String `tfsdk:"token"`
 }
 
+func New() provider.Provider {
+	return &ghProvider{}
+}
+
 func (gp *ghProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
 	var config providerModel
 	diags := req.Config.Get(ctx, &config)
@@ -92,8 +96,4 @@ func (g *ghProvider) Schema(ctx context.Context, req provider.SchemaRequest, res
 			},
 		},
 	}
-}
-
-func New() provider.Provider {
-	return &ghProvider{}
 }
